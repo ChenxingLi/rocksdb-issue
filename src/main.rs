@@ -27,7 +27,7 @@ fn main() {
         let ops = (0..1000).map(|_| insert_op(&mut rng)).collect();
         db.write(DBTransaction { ops }).unwrap();
 
-        // Time 1000 read operations.
+        // Time 1000 read operations. The read operations will slow down at about round 1600.
         let start_time = Instant::now();
         for _ in 0..1000 {
             db.get(0, &rng.gen::<[u8; 32]>()).unwrap();
